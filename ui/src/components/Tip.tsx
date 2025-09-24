@@ -49,8 +49,8 @@ export function Tip() {
 
       const signer = await signerPromise;
       const cusdt = new Contract(CUSDT_ADDRESS, CUSDTAbi as any, signer);
-
-      const tx = await cusdt.transferEncrypted(to, enc.handles[0], enc.inputProof);
+      // disambiguate overload explicitly
+      const tx = await (cusdt as any)["confidentialTransfer(address,bytes32,bytes)"](to, enc.handles[0], enc.inputProof);
       await tx.wait();
       alert('Sent');
     } catch (e: any) {
@@ -86,4 +86,3 @@ export function Tip() {
     </div>
   );
 }
-
