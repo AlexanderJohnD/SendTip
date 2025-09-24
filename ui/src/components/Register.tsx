@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAccount, usePublicClient } from 'wagmi';
+import { useAccount } from 'wagmi';
 import { Contract } from 'ethers';
 import { useEthersSigner } from '../hooks/useEthersSigner';
 import { SENDTIP_ADDRESS } from '../config/contracts';
@@ -10,7 +10,6 @@ export function Register() {
   const [github, setGithub] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const signerPromise = useEthersSigner();
-  const publicClient = usePublicClient();
 
   const onRegister = async () => {
     if (!github || !signerPromise) return;
