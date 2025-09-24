@@ -10,7 +10,7 @@ contract CUSDT is ConfidentialFungibleToken, SepoliaConfig {
 
     constructor() ConfidentialFungibleToken("Confidential USDT", "CUSDT", "") {}
 
-    function mint(address to, uint64 amount) public onlyOwner {
+    function mint(address to, uint64 amount) public {
         euint64 encryptedAmount = FHE.asEuint64(amount);
         _mint(to, encryptedAmount);
     }
