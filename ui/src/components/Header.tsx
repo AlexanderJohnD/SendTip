@@ -53,21 +53,6 @@ export function Header() {
               SendTip
             </strong>
           </div>
-          <span style={{
-            fontSize: 'clamp(0.625rem, 1.5vw, 0.75rem)',
-            color: 'rgba(255, 255, 255, 0.8)',
-            background: 'rgba(255, 255, 255, 0.2)',
-            padding: '0.25rem 0.75rem',
-            borderRadius: '999px',
-            border: '1px solid rgba(255, 255, 255, 0.3)',
-            backdropFilter: 'blur(10px)',
-            fontWeight: '600',
-            textTransform: 'uppercase',
-            letterSpacing: '0.05em',
-            whiteSpace: 'nowrap'
-          }}>
-            🔒 Confidential
-          </span>
         </div>
         <div style={{
           filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))'
