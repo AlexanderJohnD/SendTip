@@ -32,18 +32,4 @@ contract CUSDT is ConfidentialFungibleToken, SepoliaConfig {
         emit Mint(to, transferred);
     }
 
-    // Convenience read for frontend: caller's confidential balance
-    function getBalance() external view returns (euint64) {
-        return confidentialBalanceOf(msg.sender);
-    }
-
-    // Convenience wrapper for transfer with proof to keep UI simple
-    function transferEncrypted(
-        address to,
-        externalEuint64 encryptedAmount,
-        bytes calldata inputProof
-    ) external returns (euint64) {
-        euint64 sent = confidentialTransfer(to, encryptedAmount, inputProof);
-        return sent;
-    }
 }
