@@ -1,4 +1,4 @@
-[
+export const abi = [
   {
     "anonymous": false,
     "inputs": [
@@ -69,4 +69,5 @@
     "stateMutability": "nonpayable",
     "type": "function"
   }
-]
+] as const;
+export default abi;

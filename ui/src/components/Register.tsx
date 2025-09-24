@@ -3,7 +3,7 @@ import { useAccount, usePublicClient } from 'wagmi';
 import { Contract } from 'ethers';
 import { useEthersSigner } from '../hooks/useEthersSigner';
 import { SENDTIP_ADDRESS } from '../config/contracts';
-import SendTipAbi from '../abi/SendTip.json';
+import SendTipAbi from '../abi/SendTip';
 
 export function Register() {
   const { address } = useAccount();
@@ -47,4 +47,3 @@ export function Register() {
     </div>
   );
 }
-

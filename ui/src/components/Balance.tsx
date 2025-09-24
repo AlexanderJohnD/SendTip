@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAccount, usePublicClient } from 'wagmi';
 import { useZamaInstance } from '../hooks/useZamaInstance';
 import { CUSDT_ADDRESS } from '../config/contracts';
-import CUSDTAbi from '../abi/CUSDT.json';
+import CUSDTAbi from '../abi/CUSDT';
 import { useEthersSigner } from '../hooks/useEthersSigner';
 
 export function Balance() {

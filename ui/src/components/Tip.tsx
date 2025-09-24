@@ -4,8 +4,8 @@ import { useZamaInstance } from '../hooks/useZamaInstance';
 import { Contract } from 'ethers';
 import { useEthersSigner } from '../hooks/useEthersSigner';
 import { CUSDT_ADDRESS, SENDTIP_ADDRESS } from '../config/contracts';
-import CUSDTAbi from '../abi/CUSDT.json';
-import SendTipAbi from '../abi/SendTip.json';
+import CUSDTAbi from '../abi/CUSDT';
+import SendTipAbi from '../abi/SendTip';
 
 export function Tip() {
   const { address } = useAccount();
