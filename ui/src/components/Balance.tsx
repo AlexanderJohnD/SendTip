@@ -92,26 +92,231 @@ export function Balance() {
   };
 
   return (
-    <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
-      <h2 style={{ marginTop: 0, marginBottom: 16 }}>My cUSDT Balance</h2>
-      <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-        <button onClick={onFetch} disabled={!address || loading}
-          style={{ padding: '8px 12px', borderRadius: 6, border: '1px solid #111827', background: '#111827', color: '#fff', cursor: 'pointer' }}>
-          {loading ? 'Loading...' : 'Fetch' }
-        </button>
-      {handle && (
-        <>
-            <code style={{ fontSize: 12, color: '#6b7280' }}>{shortenHex(String(handle))}</code>
-            <button onClick={onDecrypt}
-              style={{ padding: '8px 12px', borderRadius: 6, border: '1px solid #2563eb', background: '#2563eb', color: '#fff', cursor: 'pointer' }}>
-              Decrypt
-            </button>
-          </>
-        )}
+    <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+      <div style={{
+        textAlign: 'center',
+        marginBottom: '2rem'
+      }}>
+        <div style={{
+          fontSize: '3rem',
+          marginBottom: '1rem'
+        }}>
+          💰
+        </div>
+        <h2 style={{
+          fontSize: '2rem',
+          fontWeight: '700',
+          color: '#1f2937',
+          marginTop: 0,
+          marginBottom: '0.5rem'
+        }}>
+          Your Confidential Balance
+        </h2>
+        <p style={{
+          color: '#6b7280',
+          fontSize: '1rem',
+          margin: 0
+        }}>
+          View and decrypt your private CUSDT balance
+        </p>
       </div>
-      {clear && (
-        <div style={{ marginTop: 12, color: '#111827' }}>Balance: {clear} CUSDT</div>
-      )}
+
+      <div style={{
+        background: 'linear-gradient(135deg, #ecfdf5, #d1fae5)',
+        border: '1px solid #10b981',
+        borderRadius: '16px',
+        padding: '2rem',
+        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+      }}>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1.5rem'
+        }}>
+          <div style={{
+            display: 'flex',
+            gap: '1rem',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            justifyContent: 'center'
+          }}>
+            <button
+              onClick={onFetch}
+              disabled={!address || loading}
+              style={{
+                padding: '0.875rem 1.5rem',
+                borderRadius: '12px',
+                border: 'none',
+                background: (!address || loading)
+                  ? '#d1d5db'
+                  : 'linear-gradient(135deg, #374151, #1f2937)',
+                color: '#ffffff',
+                fontSize: '0.875rem',
+                fontWeight: '600',
+                cursor: (!address || loading) ? 'not-allowed' : 'pointer',
+                transition: 'all 0.2s ease',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                boxShadow: (!address || loading) ? 'none' : '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+              }}
+              onMouseEnter={(e) => {
+                if (!(!address || loading)) {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 8px 15px -3px rgba(0, 0, 0, 0.1)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!(!address || loading)) {
+                  e.currentTarget.style.transform = 'translateY(0px)';
+                  e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+                }
+              }}
+            >
+              {loading && (
+                <div style={{
+                  width: '1rem',
+                  height: '1rem',
+                  border: '2px solid transparent',
+                  borderTop: '2px solid white',
+                  borderRadius: '50%',
+                  animation: 'spin 1s linear infinite'
+                }} />
+              )}
+              {loading ? 'Fetching...' : 'Fetch Balance'}
+            </button>
+          </div>
+
+          {handle && (
+            <div style={{
+              background: 'rgba(16, 185, 129, 0.1)',
+              border: '1px solid rgba(16, 185, 129, 0.3)',
+              borderRadius: '12px',
+              padding: '1.5rem'
+            }}>
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1rem',
+                alignItems: 'center'
+              }}>
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '0.5rem'
+                }}>
+                  <span style={{
+                    fontSize: '0.875rem',
+                    color: '#374151',
+                    fontWeight: '600'
+                  }}>
+                    Encrypted Balance Handle
+                  </span>
+                  <code style={{
+                    fontSize: '0.75rem',
+                    color: '#6b7280',
+                    background: '#f3f4f6',
+                    padding: '0.5rem 0.75rem',
+                    borderRadius: '8px',
+                    border: '1px solid #e5e7eb',
+                    wordBreak: 'break-all',
+                    textAlign: 'center'
+                  }}>
+                    {shortenHex(String(handle))}
+                  </code>
+                </div>
+
+                <button
+                  onClick={onDecrypt}
+                  style={{
+                    padding: '0.875rem 1.5rem',
+                    borderRadius: '12px',
+                    border: 'none',
+                    background: 'linear-gradient(135deg, #10b981, #047857)',
+                    color: '#ffffff',
+                    fontSize: '0.875rem',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 8px 15px -3px rgba(0, 0, 0, 0.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0px)';
+                    e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+                  }}
+                >
+                  🔓 Decrypt Balance
+                </button>
+              </div>
+            </div>
+          )}
+
+          {clear && (
+            <div style={{
+              background: 'linear-gradient(135deg, #fef3c7, #fde68a)',
+              border: '2px solid #f59e0b',
+              borderRadius: '16px',
+              padding: '2rem',
+              textAlign: 'center',
+              boxShadow: '0 8px 25px -5px rgba(0, 0, 0, 0.1)'
+            }}>
+              <div style={{
+                fontSize: '2.5rem',
+                marginBottom: '1rem'
+              }}>
+                🎉
+              </div>
+              <div style={{
+                fontSize: '1.125rem',
+                color: '#374151',
+                fontWeight: '600',
+                marginBottom: '0.5rem'
+              }}>
+                Your Balance
+              </div>
+              <div style={{
+                fontSize: '2.5rem',
+                fontWeight: '700',
+                color: '#1f2937',
+                textShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+              }}>
+                {clear} <span style={{ fontSize: '1.5rem', color: '#6b7280' }}>CUSDT</span>
+              </div>
+            </div>
+          )}
+
+          {!address && (
+            <div style={{
+              padding: '0.75rem',
+              background: 'rgba(239, 68, 68, 0.1)',
+              border: '1px solid rgba(239, 68, 68, 0.3)',
+              borderRadius: '8px',
+              color: '#dc2626',
+              fontSize: '0.875rem',
+              textAlign: 'center'
+            }}>
+              ⚠️ Please connect your wallet first
+            </div>
+          )}
+        </div>
+      </div>
+
+      <style>
+        {`
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `}
+      </style>
     </div>
   );
 }
