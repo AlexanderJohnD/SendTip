@@ -22,18 +22,18 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   console.log(`CUSDT contract deployed at: `, deployedCUSDT.address);
 
   // 部署FHECounter（保持原有功能）
-  const deployedFHECounter = await deploy("FHECounter", {
-    from: deployer,
-    log: true,
-  });
+  // const deployedFHECounter = await deploy("FHECounter", {
+  //   from: deployer,
+  //   log: true,
+  // });
 
-  console.log(`FHECounter contract deployed at: `, deployedFHECounter.address);
+  // console.log(`FHECounter contract deployed at: `, deployedFHECounter.address);
 
   // 输出部署摘要
   console.log("\n=== Deployment Summary ===");
   console.log(`SendTip (with CUSDT): ${deployedSendTip.address}`);
   console.log(`CUSDT: ${deployedCUSDT.address}`);
-  console.log(`FHECounter: ${deployedFHECounter.address}`);
+  // console.log(`FHECounter: ${deployedFHECounter.address}`);
   console.log("=========================\n");
 };
 

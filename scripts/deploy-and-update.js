@@ -31,9 +31,10 @@ function copyAbi(name) {
   if (!fs.existsSync(dstDir)) fs.mkdirSync(dstDir, { recursive: true });
   const artifact = readJson(src);
   const abiOnly = artifact.abi;
-  const dst = path.join(dstDir, `${name}.json`);
-  writeJson(dst, abiOnly);
-  console.log(`Copied ABI for ${name} to ${dst}`);
+  const dst = path.join(dstDir, `${name}.ts`);
+  const ts = `export const abi = ${JSON.stringify(abiOnly, null, 2)} as const;\nexport default abi;\n`;
+  fs.writeFileSync(dst, ts);
+  console.log(`Wrote TS ABI for ${name} to ${dst}`);
 }
 
 function main() {
